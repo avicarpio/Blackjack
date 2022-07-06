@@ -1,20 +1,33 @@
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class Baralla {
 
-    private LinkedList<Integer> carta;
+    private LinkedList<Integer> cartes;
+    private int howMany;
+    private int initCards;
 
-    public Baralla(){
+    public Baralla(int howMany){
         //Crea Baralla
 
-        carta = new LinkedList<>();
+        this.howMany = howMany;
+        cartes = new LinkedList<>();
 
-        for(int j = 0; j < 4; j++){
-            for(int i = 1; i <= 13; i++){
-                carta.add(i);
+        generateCards();
+        
+        initCards = cartes.size();
+
+    }
+
+    private void generateCards() {
+        for(int b = 0; b < howMany; b++){
+            for(int j = 0; j < 4; j++){
+                for(int i = 1; i <= 13; i++){
+                    cartes.add(i);
+                }
             }
         }
-
+        Collections.shuffle(cartes);
     }
 
     public void printaBaralla(){
@@ -22,8 +35,8 @@ public class Baralla {
         int i = 0;
 
         try{
-            while(i < carta.size()) {
-                System.out.println("Carta: " + carta.get(i));
+            while(i < cartes.size()) {
+                System.out.println("Carta: " + cartes.get(i));
                 i++;
             }
         }catch (Exception e){
@@ -33,16 +46,16 @@ public class Baralla {
 
     }
 
-    public Integer getCarta(int numero){
-        int quina = carta.get(numero);
-
-        carta.remove(numero);
-
-        return quina;
+    public Integer getCarta(){
+        if(cartes.size() < initCards / 2){
+            cartes.clear();
+            generateCards();
+        }
+        return cartes.pop();
     }
 
     public Integer getSize(){
-        return carta.size();
+        return cartes.size();
     }
 
 }

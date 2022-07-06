@@ -37,7 +37,7 @@ public class LogicaDecisio {
         int decisio = QUEDAT;
 
         if(player.size() == 2){
-            if(player.get(0) == 1 || player.get(1) == 1 && player.get(0) == 10 || player.get(1) == 10){
+            if((player.get(0) == 1 || player.get(1) == 1) && (player.get(0) == 10 || player.get(1) == 10)){
                 //BLACKJACK!
 
                 decisio = BLACKJACK;
